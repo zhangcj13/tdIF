@@ -7,5 +7,7 @@ LIB_DIR=./tdIF #$(pwd)
 # cd $LIB_DIR/libs/YOLOX
 # git checkout 618fd8c08b2bc5fac9ffbb19a3b7e039ea0d5b9a
 
+# use provided tar file to avoid download issues
+tar -xvf "$LIB_DIR/libs/YOLOX.tar" -C "$LIB_DIR/libs/"
+
 pip install -e $LIB_DIR/libs/YOLOX
-# pip install seaborn
