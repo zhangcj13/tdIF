@@ -1,28 +1,53 @@
 # tdIF
 The source code for paper: Ultra-Low-Latency Spiking Neural Networks with Temporal-Dependent Integrate-and-Fire Neuron Model for Objects Detection
 
-To view our paper, please refer: [Ultra-Low-Latency Spiking Neural Networks with Temporal-Dependent Integrate-and-Fire Neuron Model for Objects Detection](https://arxiv.org/abs/2508.20392). The Supplementary Material is attached in this repo for reference.
+To view our paper, please refer: [Ultra-Low-Latency Spiking Neural Networks with Temporal-Dependent Integrate-and-Fire Neuron Model for Objects Detection](https://arxiv.org/abs/2508.20392). 
 
 ## Method
 ![image](https://github.com/zhangcj13/tdIF/blob/main/images/overview.png)
 
-<!-- ## Dependency
-The denpendencies and versions are listed below: -->
-<!-- ```
-python                  3.8.13
-CUDA                    11.7.1
-torch                   1.13.0
-torchaudio              0.13.0
-torchvision             0.14.0
-numpy                   1.23.3
-urllib3                 1.26.12
-spikingjelly            0.0.0.0.13
-librosa                 0.7.1
-Werkzeug                2.0.3
-h5py                    3.10.0
-``` -->
+## Prepare Python env prepare 
+python=3.8.13
+```
+# install torch
+pip install torch==2.0.0+cu117 torchvision==0.15.0+cu117 torchaudio==2.0.0+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
+# install yolox
+bash llibs/download_install.sh
+# install packages
+pip install -r requirement.txt
+```
+## Prepare datasets
+### Expected dataset structure for [COCO detection](https://cocodataset.org/#download):
+```
+COCO/
+  annotations/instances_{train,val}2017.json
+  {train,val}2017/      # image files that are mentioned in the corresponding json
+```
+### Expected dataset structure for [Pascal VOC detection](https://opendatalab.org.cn/OpenDataLab/PASCAL_VOC2012):
+```
+VOC2007/
+  Annotations/ *.xml   # corresponding xml 
+  ImageSets/Main/{train,text}.txt # train and val split file 
+  JPEGImages/  *.jpg # image files
+```
+### Expected dataset structure for [Tusimple](https://github.com/TuSimple/tusimple-benchmark/tree/master/doc/lane_detection):
+```
+tusimple_lane/
+    lane_detection/
+        clips/         # image files
+        label_data_{0313,0531,...}.jsom  # json for lane label
+```
+
+### Expected dataset structure for [Culane](https://xingangpan.github.io/projects/CULane.html):
+```
+CULane/
+  driver_*_frame/*MP4/ *.jpg *.lines.txt
+  ...
+  list/{train,val,text}.txt 
+```
 
 ## Train Quantized model
+Modify the dataset path configuration in the config file according to your dataset's location, and adjust the training parameters as needed.
 ### Pascal VOC
 ```
 # yolov3-tiny 
@@ -54,19 +79,25 @@ python train_ld.py --config configs/CULane/resnet18_condlane.py --work_name resn
 # resnet34
 python train_ld.py --config configs/CULane/resnet34_condlane.py --work_name resnet34_condlane
 ```
+
 ## Eval with different neuron model
-tdIF and A2F (IF neuron with delay)
-[Google Drive](https://drive.google.com/...)
+    --neuron    [tdIF, A2F] # A2F is IF neuron with delay
+    --time_step int         # time step for inference
+    --delay     int         # delay spike step
+
+Partial model weights can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1dyJb20076vaJ1G-gypzU4xLd0fttJX6p?usp=drive_link).
+
 ### Object detection
 ```
-python eval_od.py -f configs/yolox_exp/yolov3tiny_voc_quant.py  -b 64 --neuron tdIF --time_step 8 --delay 3 --ckpt /root/data1/ws/SNN_CV/YOLOX_outputs/tdIF_voc_yolov3tiny/yolov3tiny_voc_qcfs_ts255/best_ckpt.pth
-```
-### Lane line detection
-```
-python eval_ld.py --config configs/Tusimple/resnet18_condlane.py  --neuron tdIF --time_step 8 --delay 3 --load_from /root/data1/ws/SNN_CV/work_dirs/TuSimple/tdIF_resnet18_condlane_tusimple_qcfs_ts255/20241219_135725_lr_3e-04_b_96_ts_255/ckpt/best.pth
+python eval_od.py -f configs/yolox_exp/yolov3tiny_voc_quant.py  -b 64 --neuron tdIF --time_step 8 --delay 3 --ckpt path_to/*ckpt.pth
 ```
 
-### Citation
+### Lane line detection
+```
+python eval_ld.py --config configs/Tusimple/resnet18_condlane.py  --neuron tdIF --time_step 8 --delay 3 --load_from path_to/*ckpt.pth
+```
+
+## Citation
 If our work help to your research, please cite our paper, thx.
 ```
 @article{zhang2025ultra,
@@ -77,7 +108,8 @@ If our work help to your research, please cite our paper, thx.
 }
 ```
 
-Thanks to：
+## Thanks to these amazing projects:
 - [spikingjelly](https://github.com/fangwei123456/spikingjelly)
+- [ANN-SNN-QCFS](https://github.com/putshua/SNN_conversion_QCFS?tab=readme-ov-file)
 - [YOLOX](https://github.com/Megvii-BaseDetection/YOLOX)
 - [CondLaneNet](https://github.com/aliyun/conditional-lane-detection)
