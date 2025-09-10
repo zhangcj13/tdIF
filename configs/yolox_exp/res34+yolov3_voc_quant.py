@@ -209,7 +209,7 @@ class Exp(BaseExp):
         self.input_size = (416, 416)  # (height, width)
         self.test_size = (416, 416)
 
-        self.data_dir = '/root/siton-data-publiceData/dataset/VOCdevkit'
+        self.data_dir = './dataset/VOCdevkit'
     
     def get_model(self):
         from detection.utils.config import Config

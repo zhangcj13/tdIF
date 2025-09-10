@@ -189,8 +189,8 @@ val_process = [
 ]
 
 
-dataset_path = '/root/data2/dataset/tusimple/raw/tusimple_lane/lane_detection'
-test_json_file = '/root/data2/dataset/tusimple/raw/tusimple_lane/lane_detection/test_label.json'
+dataset_path = './tusimple_lane/lane_detection'
+test_json_file = './tusimple_lane/lane_detection/test_label.json'
 dataset_type = 'TuSimple'
 
 dataset = dict(

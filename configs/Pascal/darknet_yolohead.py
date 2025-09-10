@@ -37,4 +37,3 @@ yolo_loss=dict(num_classes=num_classes,
                anchors_mask=anchors_mask,
                )
 
-data_dir = '/root/siton-data-chenjun/dataset/'

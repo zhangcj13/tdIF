@@ -181,7 +181,7 @@ val_process = [
     dict(type='ToTensor', keys=['img']),
 ]
 
-dataset_path = '/root/siton-data-publiceData/dataset/CULane/'
+dataset_path = './dataset/CULane'
 dataset = dict(
     train=dict(
         type='CULane',

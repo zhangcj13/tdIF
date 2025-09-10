@@ -194,7 +194,7 @@ class Exp(BaseExp):
 
         self.test_size = (640, 640)
 
-        self.data_dir = '/root/siton-data-publiceData/dataset/COCO/'
+        self.data_dir = './dataset/COCO/'
     
     def get_model(self):
         from detection.utils.config import Config
