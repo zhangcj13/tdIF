@@ -6,7 +6,7 @@ To view our paper, please refer: [Ultra-Low-Latency Spiking Neural Networks with
 ## Method
 ![image](https://github.com/zhangcj13/tdIF/blob/main/images/overview.png)
 
-## Prepare Python env prepare 
+## Prepare Python env 
 python=3.8.13
 ```
 # install torch
