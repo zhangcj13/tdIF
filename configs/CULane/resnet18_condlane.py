@@ -3,7 +3,7 @@ net = dict(
 )
 
 SNN = dict(
-    type='QUANT',  # QCFS  STBP  NONE
+    type='QUANT',  #  STBP  NONE
     time_step=255,
 )
 

@@ -49,7 +49,7 @@ class LaneDetector(nn.Module):
                 replace_maxpool2d_by_avgpool2d(self)
             replace_activation_by_floor(self, t=self.time_step)
             self.snn_infer = False
-            print(f'>>>>>>>>>>>> qcfs time-step: {self.time_step} <<<<<<<<<<<<')
+            print(f'>>>>>>>>>>>> quant time-step: {self.time_step} <<<<<<<<<<<<')
 
         elif params['type']=='SLIP':
             replace_maxpool = True if 'replace_maxpool' not in params.keys() else params['replace_maxpool']

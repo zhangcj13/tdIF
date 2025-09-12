@@ -12,7 +12,7 @@ python=3.8.13
 # install torch
 pip install torch==2.0.0+cu117 torchvision==0.15.0+cu117 torchaudio==2.0.0+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
 # install yolox
-bash llibs/download_install.sh
+bash libs/download_install.sh
 # install packages
 pip install -r requirement.txt
 ```

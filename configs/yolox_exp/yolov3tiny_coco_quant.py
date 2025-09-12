@@ -12,8 +12,8 @@ import torch.distributed as dist
 import torch.nn as nn
 
 from detection.models.registry import build_backbones, build_aggregator, build_heads, build_necks,build_head
-from snn.qcfs.utils import replace_relu_by_leakyrelu
-from snn.qcfs.utils import replace_activation_by_floor, replace_activation_by_neuron, replace_maxpool2d_by_avgpool2d,reset_net,replace_activation_by_slip,search_fold_and_remove_bn
+from snn.quant.utils import replace_relu_by_leakyrelu
+from snn.quant.utils import replace_activation_by_floor, replace_activation_by_neuron, replace_maxpool2d_by_avgpool2d,reset_net,replace_activation_by_slip,search_fold_and_remove_bn
 from snn.multi_step_layers import replace_ss_by_ms
 
 

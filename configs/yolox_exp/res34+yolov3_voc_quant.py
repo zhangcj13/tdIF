@@ -12,7 +12,7 @@ import torch.distributed as dist
 import torch.nn as nn
 
 from detection.models.registry import build_backbones, build_aggregator, build_heads, build_necks,build_head
-from snn.qcfs.utils import replace_activation_by_floor, replace_activation_by_neuron, replace_maxpool2d_by_avgpool2d,reset_net,replace_activation_by_slip,search_fold_and_remove_bn
+from snn.quant.utils import replace_activation_by_floor, replace_activation_by_neuron, replace_maxpool2d_by_avgpool2d,reset_net,replace_activation_by_slip,search_fold_and_remove_bn
 from snn.multi_step_layers import replace_ss_by_ms
 
 class YOLOV3(nn.Module):
@@ -218,7 +218,7 @@ class Exp(BaseExp):
         cfg = Config.fromfile('configs/Pascal/resnet34_yolov3head.py')
         self.model = YOLOV3(cfg)
     
-        # convert to qcfs
+        # convert to quant
         params = cfg.SNN
         self.time_step = params['time_step']
         if params['type']=='QUANT':
