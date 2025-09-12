@@ -27,7 +27,7 @@ COCO/
 ```
 VOC2007/
   Annotations/ *.xml   # corresponding xml 
-  ImageSets/Main/{train,text}.txt # train and val split file 
+  ImageSets/Main/{train,test}.txt # train and val split file 
   JPEGImages/  *.jpg # image files
 ```
 ### Expected dataset structure for [Tusimple](https://github.com/TuSimple/tusimple-benchmark/tree/master/doc/lane_detection):
@@ -43,7 +43,7 @@ tusimple_lane/
 CULane/
   driver_*_frame/*MP4/ *.jpg *.lines.txt
   ...
-  list/{train,val,text}.txt 
+  list/{train,val,test}.txt 
 ```
 
 ## Train Quantized model
